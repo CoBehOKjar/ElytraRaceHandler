@@ -1,16 +1,16 @@
 local PLAYERS = require("players")
+local deaths = require("deaths")
+local anticheat = require("anticheat")
+local check = require("check")
+local action_wheel = require("action_wheel")
+local net = require("net")
 
 function events.entity_init()
     print(PLAYERS.racers)
-    
 end
 
 function events.tick()
-    for _, p in pairs(world.getPlayers()) do
-        local name = p:getName()
-        if PLAYERS.racers[name] and not p:isAlive() then
-            local pos = p:getPos()
-            print(name.." помер на "..pos.x, pos.y, pos.z)
-        end
-    end
+    local plist = world.getPlayers()
+    deaths.tick(plist)
+    anticheat.tick(plist)
 end

@@ -1,12 +1,34 @@
 local Players = {}
 
+Players.sended = {
+    death = {},
+    cheat = {}
+}
+
 Players.org = {
     ["CoBeHok"] = true,
-    ["rejektov"] = true,
-    ["Ut0p1sT"] = true,
-    ["Iv1nce_"] = true,
-    ["Romul_Us"] = true,
-    ["Poxyie"] = true,
+    -- ["rejektov"] = true,
+    -- ["Ut0p1sT"] = true,
+    -- ["Iv1nce_"] = true,
+    -- ["Romul_Us"] = true,
+    -- ["Poxyie"] = true,
+}
+
+Players.bots = {
+    ["CoBeHok"] = true,
+    ["OtagHi"] = true,
+    ["hyperWOW"] = true,
+    ["URAyaderka"] = true,
+    ["BuyingYaderka"] = true,
+    ["otagSmile"] = true,
+}
+
+Players.looters = {
+    ["CoBeHok"] = true,
+    -- ["rejektov"] = true,
+    -- ["Ut0p1sT"] = true,
+    -- ["Iv1nce_"] = true,
+    -- ["Romul_Us"] = true,
 }
 
 Players.racers = {
