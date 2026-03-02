@@ -1,4 +1,5 @@
 local PLAYERS = require("players")
+local discord = require("discord")
 
 local sended = PLAYERS.sended
 
@@ -15,11 +16,13 @@ function Net.send_death(name, pos)
             org, name, pos.x, pos.y, pos.z
         ))
     end
-    print(string.format(
+    local msg = string.format(
             "%s умер на %d, %d, %d",
             name, pos.x, pos.y, pos.z
-        ))
+        )
 
+    print(msg)
+    discord.send(msg)
     table.insert(sended.pending, {
         rule = 0,
         name = name
@@ -51,8 +54,9 @@ function Net.send_cheat(rule, name)
             org, msg
         ))
     end
-    print(msg)
 
+    print(msg)
+    discord.send(msg)
     table.insert(sended.pending, {
         rule = rule,
         name = name
