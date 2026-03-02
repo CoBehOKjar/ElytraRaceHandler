@@ -14,3 +14,7 @@ function events.tick()
     deaths.tick(plist)
     anticheat.tick(plist)
 end
+
+function events.chat_receive_message(raw, text)
+    net.listen(raw, text)
+end

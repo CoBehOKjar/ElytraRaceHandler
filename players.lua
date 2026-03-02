@@ -2,7 +2,8 @@ local Players = {}
 
 Players.sended = {
     death = {},
-    cheat = {}
+    cheat = {},
+    pending = {}
 }
 
 Players.org = {
@@ -16,11 +17,11 @@ Players.org = {
 
 Players.bots = {
     ["CoBeHok"] = true,
-    ["OtagHi"] = true,
-    ["hyperWOW"] = true,
-    ["URAyaderka"] = true,
-    ["BuyingYaderka"] = true,
-    ["otagSmile"] = true,
+    -- ["OtagHi"] = true,
+    -- ["hyperWOW"] = true,
+    -- ["URAyaderka"] = true,
+    -- ["BuyingYaderka"] = true,
+    -- ["otagSmile"] = true,
 }
 
 Players.looters = {
