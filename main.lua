@@ -7,6 +7,7 @@ local net = require("net")
 
 function events.entity_init()
     print(PLAYERS.racers)
+    ME = player:getName()
 end
 
 function events.tick()

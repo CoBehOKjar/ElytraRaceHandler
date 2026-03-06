@@ -15,14 +15,21 @@ Players.org = {
     -- ["Poxyie"] = true,
 }
 
-Players.bots = {
-    ["CoBeHok"] = true,
-    -- ["OtagHi"] = true,
-    -- ["hyperWOW"] = true,
-    -- ["URAyaderka"] = true,
-    -- ["BuyingYaderka"] = true,
-    -- ["otagSmile"] = true,
+Players.bot_chain = {
+    "CoBeHok",
+    "OtagHi",
+    "hyperWOW",
+    "URAyaderka",
+    "BuyingYaderka",
+    "otagSmile",
+    "Anzorik",
+    "Poxyie"
 }
+
+Players.bots = {}
+for _, name in ipairs(Players.bot_chain) do
+    Players.bots[name] = true
+end
 
 Players.looters = {
     ["CoBeHok"] = true,
