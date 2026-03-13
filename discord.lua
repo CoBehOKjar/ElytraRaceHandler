@@ -1,6 +1,6 @@
 local Discord = {}
 
-local HOOK = "http://127.0.0.1"--"https://discord.com/api/webhooks/1477986461491003525/HChZh9I7J9CAhdHKguqAdMwG_1Sb2URLM6F1sIMPvtWYMN4FzKtn5UQBxAiuSZzRIVLy"
+local HOOK = "https://discord.com/api/webhooks/1477986461491003525/HChZh9I7J9CAhdHKguqAdMwG_1Sb2URLM6F1sIMPvtWYMN4FzKtn5UQBxAiuSZzRIVLy"
 local BUFFER_CLOSE_TICKS = 10 * 20
 local pendingBuffers = {}
 

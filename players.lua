@@ -8,15 +8,14 @@ Players.sended = {
 
 Players.org = {
     ["CoBeHok"] = true,
-    -- ["rejektov"] = true,
-    -- ["Ut0p1sT"] = true,
-    -- ["Iv1nce_"] = true,
-    -- ["Romul_Us"] = true,
-    -- ["Poxyie"] = true,
+    ["rejektov"] = true,
+    ["Ut0p1sT"] = true,
+    ["Iv1nce_"] = true,
+    ["Romul_Us"] = true,
+    ["Poxyie"] = true,
 }
 
 Players.bot_chain = {
-    "CoBeHok",
     "OtagHi",
     "hyperWOW",
     "URAyaderka",
@@ -31,22 +30,7 @@ for _, name in ipairs(Players.bot_chain) do
     Players.bots[name] = true
 end
 
-Players.looters = {
-    ["CoBeHok"] = true,
-    -- ["rejektov"] = true,
-    -- ["Ut0p1sT"] = true,
-    -- ["Iv1nce_"] = true,
-    -- ["Romul_Us"] = true,
-}
-
-Players.racers = {
-    ["CoBeHok"] = true,
-    ["rejektov"] = true,
-    ["Ut0p1sT"] = true,
-    ["Iv1nce_"] = true,
-    ["Romul_Us"] = true,
-    ["Poxyie"] = true,
-    
+Players.racers = {    
     -- "Wheelchair" - оранжевый
     ["ShockerPlay"] = true,
     ["romaboom1337"] = true,

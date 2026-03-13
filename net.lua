@@ -24,12 +24,14 @@ end
 
 function Net.send_death(name, pos)
     sended.death[name] = true
-    for org, _ in pairs(PLAYERS.org) do
-        host:sendChatCommand(string.format(
-            "tell %s %s умер на %d, %d, %d",
-            org, name, pos.x, pos.y, pos.z
-        ))
-    end
+    if sended.death[name] then return end
+
+    -- for org, _ in pairs(PLAYERS.org) do
+    --     host:sendChatCommand(string.format(
+    --         "tell %s %s умер на %d, %d, %d",
+    --         org, name, pos.x, pos.y, pos.z
+    --     ))
+    -- end
     local msg = string.format(
             "%s умер на %d, %d, %d",
             name, pos.x, pos.y, pos.z
@@ -62,12 +64,12 @@ function Net.send_cheat(rule, name)
         msg = string.format("%s: правила %d не существует, проверь код.", name, rule)
     end
 
-    for org, _ in pairs(PLAYERS.org) do
-        host:sendChatCommand(string.format(
-            "tell %s %s",
-            org, msg
-        ))
-    end
+    -- for org, _ in pairs(PLAYERS.org) do
+    --     host:sendChatCommand(string.format(
+    --         "tell %s %s",
+    --         org, msg
+    --     ))
+    -- end
 
     print(msg)
     discord.send(msg)
@@ -105,14 +107,14 @@ function Net.listen(raw, text)
     local sender
 
     --? Pepeland DM
+    
     if raw:find("✉✉✉") then
         sender = raw:match("^✉✉✉%s*%[([^%s]+)")
         if sender then sender = sender:gsub("[^%w_]", "") end
 
-        if sender and PLAYERS.bots[sender] or PLAYERS.org[sender] then
-            return text
+        if sender and (PLAYERS.bots[sender] or PLAYERS.org[sender]) then
+            jsonStr = raw:match("(%b[])$")
         end
-        jsonStr = raw:match("(%b[])$")
     end
 
     --? Vanilla DM
@@ -120,7 +122,7 @@ function Net.listen(raw, text)
         sender = raw:match("^&[%x]+o?([%w_]+)") or raw:match("^([%w_]+)")
         if sender then sender = sender:gsub("[^%w_]", "") end
 
-        if sender and PLAYERS.bots[sender] or PLAYERS.org[sender] then
+        if sender and (PLAYERS.bots[sender] or PLAYERS.org[sender]) then
             jsonStr = raw:match("whispers to you:%s*(%b[])$")
         end
     end
@@ -143,30 +145,39 @@ function Net.listen(raw, text)
         end
 
         if rule == -1 then
+            local changed = false
+
             if sended.death[name] then
                 sended.death[name] = nil
-                isNewData = true
+                changed = true
             end
+
             for ruleID, playersTable in pairs(sended.cheat) do
                 if playersTable[name] then
                     playersTable[name] = nil
-                    isNewData = true
+                    changed = true
                 end
             end
-            if isNewData then
-                print("Получен сброс игрока " .. name)
+
+            if changed then
+                print("Получен сброс игрока "..name)
+                isNewData = true
             end
         elseif rule == 0 then
-            sended.death[name] = true
-            print("Получена смерть "..name)
-            isNewData = true
+            if not sended.death[name] then
+                sended.death[name] = true
+                print("Получена смерть "..name)
+                isNewData = true
+            end
         else
             sended.cheat[rule] = sended.cheat[rule] or {}
-            sended.cheat[rule][name] = true
-            print("Получено нарушение правила "..rule.." от "..name)
-            isNewData = true
-        end
 
+            if not sended.cheat[rule][name] then
+                sended.cheat[rule][name] = true
+                print("Получено нарушение правила "..rule.." от "..name)
+                isNewData = true
+            end
+        end
         ::continue::
     end
 
